@@ -1,30 +1,34 @@
 {
-  "name": "mpb-components-rn-npm-boilerplate",
-  "version": "0.2.0",
+  "name": "mbp-components-rn-asyncimage",
+  "version": "0.1.0",
   "description": "Boilerplate to quickstart React Native component development",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "./node_modules/.bin/ts-node ./scripts/dev.ts",
+    "build:watch": "webpack --watch --config webpack.config.js",
     "format:clean": "rimraf dist",
     "prepare": "run-s format:clean build",
+    "setup:example": "./node_modules/.bin/ts-node ./scripts/setup:example.ts",
     "start": "yarn start:ios:example",
     "start:android": "cd example && yarn android",
-    "start:android:example": "run-s dev start:android",
+    "start:android:example": "run-s start:android build:watch",
     "start:ios": "cd example && yarn ios",
-    "start:ios:example": "run-s dev start:ios",
+    "start:ios:example": "run-s start:ios build:watch",
     "test": "run-s test:lint test:unit build",
     "test:lint": "./node_modules/.bin/eslint \"./**/*.{js,ts,tsx}\"",
     "test:package": "npx scriptlint --strict",
     "test:unit": "jest",
-    "test:unit:coverage": "jest --coverage"
+    "test:unit:coverage": "jest --coverage",
+    "test:unit:watch": "jest --watch"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/react-native": "^0.61.23",
+    "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "babel-jest": "^25.1.0",
@@ -79,5 +83,6 @@
       "start:android",
       "start:ios"
     ]
-  }
+  },
+  "dependencies": {}
 }

@@ -1,4 +1,3 @@
-import { Hello } from './components/Hello';
+import AsyncImage from './components/AsyncImage/AsyncImage';
 
-export * as Test from './styles/index';
-export default Hello;
+export default AsyncImage;

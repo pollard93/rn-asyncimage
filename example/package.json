@@ -9,7 +9,7 @@
     "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
-    "mpb-components-rn-npm-boilerplate": "../mpb-components-rn-npm-boilerplate-0.2.0.tgz",
+    "mbp-components-rn-asyncimage": "../mbp-components-rn-asyncimage-0.1.0.tgz",
     "react": "16.9.0",
     "react-native": "0.61.5"
   },
