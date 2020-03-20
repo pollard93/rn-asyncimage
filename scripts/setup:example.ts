@@ -2,6 +2,7 @@
 import * as util from 'util';
 import * as childProcess from 'child_process';
 import { name, version } from '../package.json';
+import { dependencies } from '../example/package.json';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -19,8 +20,10 @@ void (async function () {
   await exec('npm pack');
 
   try {
-    console.log('removing previous package');
-    await exec(`cd example && yarn remove ${name}`);
+    // Necessary to remove all packages except react and react-native to handle name change scenarios
+    const packages = Object.keys(dependencies).filter((k) => !['react', 'react-native'].includes(k)).join(' ');
+    console.log(`removing previous packages: ${packages}`);
+    await exec(`cd example && yarn remove ${packages}`);
   } catch (e) {}
 
   console.log('installing new package');

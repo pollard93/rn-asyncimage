@@ -1,4 +1,5 @@
 const path = require('path');
+const SyncAssetsPlugin = require('./SyncAssetsPlugin');
 const packageJson = require('./package.json');
 
 module.exports = {
@@ -53,4 +54,8 @@ module.exports = {
     reactDOM: 'react-dom',
     'react-native': 'react-native',
   },
+
+  plugins: [
+    new SyncAssetsPlugin({ options: true }),
+  ],
 };
