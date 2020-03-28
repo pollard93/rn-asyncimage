@@ -1,6 +1,6 @@
 {
   "name": "mbp-components-rn-asyncimage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Boilerplate to quickstart React Native component development",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,6 +24,7 @@
     "test:unit:watch": "jest --watch"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
