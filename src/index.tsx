@@ -1,3 +1,1 @@
-import AsyncImage from './components/AsyncImage/AsyncImage';
-
-export default AsyncImage;
+export * from './components/AsyncImage/AsyncImage';

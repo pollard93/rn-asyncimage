@@ -12,6 +12,7 @@ export interface AsyncImageProps {
   imageProps?: ImageProps;
   blockUpdate?: true; // Image does not accept updates to the fullUrl
   onLoaded?: () => void;
+  transitionTime?: number; // Default 300ms
   key?: number | string; // For iteration
   testID?: string; // For testing
 }
@@ -30,7 +31,7 @@ const AsyncImage = (props: AsyncImageProps) => {
 
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 2000,
+      duration: props.transitionTime || 300,
       useNativeDriver: true,
     }).start(() => {
       setLoaded(true);
