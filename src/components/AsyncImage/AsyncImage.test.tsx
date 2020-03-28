@@ -28,11 +28,12 @@ describe('<AsyncImage />', () => {
     expect(wrapper.find('AnimatedComponent').props().style[0].opacity._value).to.equal(0);
   });
 
-  it('Tests render without splash', async () => {
+  it('Tests render with placeholder', async () => {
     const wrapper = mount(
       <AsyncImage
         splashUrl="https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2&q=80"
         fullUrl="https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop"
+        placeholderImageSource={{ uri: 'https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2&q=80' }}
         containerProps={{
           style: {
             width: 250,
@@ -43,13 +44,10 @@ describe('<AsyncImage />', () => {
     );
 
     // Test render
-    expect(wrapper.findWhere((n) => n.props().testID === 'AIPLACEHOLDER')).to.not.have.length;
-    expect(wrapper.findWhere((n) => n.props().testID === 'AISPLASH')).to.not.have.length;
-    expect(wrapper.findWhere((n) => n.props().testID === 'AIFULL')).to.have.length;
-    expect(wrapper.find('AnimatedComponent').props().style[0].opacity._value).to.equal(0);
+    expect(wrapper.findWhere((n) => n.props().testID === 'AIPLACEHOLDER')).to.have.length;
   });
 
-  it('Tests render with placeholder', async () => {
+  it('Tests render with no fullUrl', async () => {
     const wrapper = mount(
       <AsyncImage
         splashUrl="https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2&q=80"
@@ -115,6 +113,30 @@ describe('<AsyncImage />', () => {
     expect(wrapper.findWhere((n) => n.props().testID === 'AISPLASH')).to.not.have.length;
     expect(wrapper.findWhere((n) => n.props().testID === 'AIFULL')).to.have.length;
     expect(wrapper.find('AnimatedComponent').props().style[0].opacity._value).to.equal(1);
+  });
+
+  it('Tests loaded state with no urls', async () => {
+    const wrapper = mount(
+      <AsyncImageView
+        opacity={new Animated.Value(1)}
+        loaded={true}
+        onLoad={() => {}}
+        splashUrl={null}
+        fullUrl={null}
+        placeholderImageSource={{ uri: 'https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2&q=80' }}
+        containerProps={{
+          style: {
+            width: 250,
+            height: 250,
+          },
+        }}
+      />,
+    );
+
+    // Test render
+    expect(wrapper.findWhere((n) => n.props().testID === 'AIPLACEHOLDER')).to.have.length;
+    expect(wrapper.findWhere((n) => n.props().testID === 'AISPLASH')).to.not.have.length;
+    expect(wrapper.findWhere((n) => n.props().testID === 'AIFULL')).to.not.have.length;
   });
 
   it('Tests fullUrl updates', async () => {
