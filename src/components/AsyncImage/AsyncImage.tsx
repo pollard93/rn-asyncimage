@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { ImageProps, Animated, ViewProps, ImageSourcePropType } from 'react-native';
 import AsyncImageView from './AsyncImageView';
 
 
 export interface AsyncImageProps {
   fullUrl: string;
-  splashUrl: string;
+  splashUrl?: string;
   containerProps: ViewProps;
   placeholderImageSource?: ImageSourcePropType;
   splashImageProps?: ImageProps;
   imageProps?: ImageProps;
+  blockUpdate?: true; // Image does not accept updates to the fullUrl
+  onLoaded?: () => void;
+  key?: number | string; // For iteration
+  testID?: string; // For testing
 }
 
 
@@ -26,19 +30,26 @@ const AsyncImage = (props: AsyncImageProps) => {
 
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 300,
+      duration: 2000,
       useNativeDriver: true,
-    }).start(() => setLoaded(true));
+    }).start(() => {
+      setLoaded(true);
+
+      if (props.onLoaded) {
+        props.onLoaded();
+      }
+    });
   };
 
 
   return (
     <AsyncImageView
       {...props}
+      opacity={opacity}
       loaded={loaded}
       onLoad={onLoad}
     />
   );
 };
 
-export default AsyncImage;
+export default memo(AsyncImage, (props) => props.blockUpdate);
