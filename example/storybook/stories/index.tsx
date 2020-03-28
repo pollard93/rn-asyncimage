@@ -32,6 +32,19 @@ storiesOf('AsyncImage', module)
       }}
     />
   ))
+  .add('AsyncImage - no urls', () => (
+    <AsyncImage
+      splashUrl={null}
+      fullUrl={null}
+      placeholderImageSource={require('../../icon-small.png')}
+      containerProps={{
+        style: {
+          width: 250,
+          height: 250,
+        },
+      }}
+    />
+  ))
   .add('AsyncImage - changing image transition', () => {
     const TestComponent = () => {
       const [selectedIndex, setSelectedIndex] = useState(0);

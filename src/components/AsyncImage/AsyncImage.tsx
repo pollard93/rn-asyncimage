@@ -4,7 +4,7 @@ import AsyncImageView from './AsyncImageView';
 
 
 export interface AsyncImageProps {
-  fullUrl: string;
+  fullUrl?: string;
   splashUrl?: string;
   containerProps: ViewProps;
   placeholderImageSource?: ImageSourcePropType;
