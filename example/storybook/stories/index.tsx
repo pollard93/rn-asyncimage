@@ -45,7 +45,7 @@ storiesOf('AsyncImage', module)
       }}
     />
   ))
-  .add('AsyncImage - changing image transition', () => {
+  .add('AsyncImage - updateable', () => {
     const TestComponent = () => {
       const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -69,7 +69,15 @@ storiesOf('AsyncImage', module)
           />
           <Button
             title="Change image"
-            onPress={() => setSelectedIndex(Math.floor(Math.random() * Math.floor(images.length)))}
+            onPress={() => {
+              if(selectedIndex < images.length -1){
+                setSelectedIndex(selectedIndex + 1);
+              }
+            }}
+          />
+          <Button
+            title="Cancel"
+            onPress={() => setSelectedIndex(0)}
           />
         </View>
       )

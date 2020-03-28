@@ -91,19 +91,21 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
       <SplashImage />
 
       {/* Main image */}
-      <Animated.Image
-        {...imageProps}
-        style={[
-          // eslint-disable-next-line react-native/no-inline-styles
-          { opacity },
-          styles.fullImage,
-        ]}
-        onLoad={onLoad}
-        source={fullUrl && {
-          uri: fullUrl,
-        }}
-        testID='AIFULL'
-      />
+      {fullUrl && (
+        <Animated.Image
+          {...imageProps}
+          style={[
+            // eslint-disable-next-line react-native/no-inline-styles
+            { opacity },
+            styles.fullImage,
+          ]}
+          onLoad={onLoad}
+          source={{
+            uri: fullUrl,
+          }}
+          testID='AIFULL'
+        />
+      )}
 
       {/* Iterate over tempUrls and display them, set blockUpdate so AsyncImage does not accept updates */}
       {tempUrls.map((t) => (
