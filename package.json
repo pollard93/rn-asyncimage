@@ -1,6 +1,6 @@
 {
   "name": "mbp-components-rn-asyncimage",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Boilerplate to quickstart React Native component development",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,6 +24,7 @@
     "test:unit:watch": "jest --watch"
   },
   "devDependencies": {
+    "@react-native-community/cameraroll": "^1.5.2",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.23",
@@ -43,6 +44,7 @@
     "eslint-plugin-react-native": "^3.8.1",
     "jest": "^25.1.0",
     "jest-enzyme": "^7.1.2",
+    "mbp-components-rn-assetpicker": "ssh://git@bitbucket.org:madebyprism/mbp-components-rn-assetpicker.git#0.1.0",
     "mock-async-storage": "^2.2.0",
     "npm-run-all": "^4.1.5",
     "react": "^16.13.0",
@@ -52,7 +54,7 @@
     "rimraf": "^3.0.2",
     "scriptlint": "^2.0.4",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^6.2.1",
+    "ts-loader": "^6.2.2",
     "ts-node": "^8.7.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.0",
@@ -60,6 +62,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "peerDependencies": {
+    "@react-native-community/cameraroll": "^1.5.2",
+    "mbp-components-rn-assetpicker": "ssh://git@bitbucket.org:madebyprism/mbp-components-rn-assetpicker.git#0.1.0",
     "react": ">= 16.8.6",
     "react-native": ">= 0.60.5"
   },

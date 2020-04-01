@@ -18,7 +18,7 @@ export interface AsyncImageProps {
 }
 
 
-const AsyncImage = (props: AsyncImageProps) => {
+const AsyncImageComp = (props: AsyncImageProps) => {
   const [opacity] = useState(new Animated.Value(0));
   const [loaded, setLoaded] = useState(false);
 
@@ -53,4 +53,4 @@ const AsyncImage = (props: AsyncImageProps) => {
   );
 };
 
-export default memo(AsyncImage, (props) => props.blockUpdate);
+export const AsyncImage = memo(AsyncImageComp, (props) => props.blockUpdate);

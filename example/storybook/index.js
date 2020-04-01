@@ -6,7 +6,8 @@ import './rn-addons';
 
 // import stories
 configure(() => {
-  require('./stories');
+  require('./stories/AsyncImage');
+  require('./stories/EditableAsyncImage');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters

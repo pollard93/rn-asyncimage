@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
 import { Animated } from 'react-native';
-import AsyncImage from './AsyncImage';
+import { AsyncImage } from './AsyncImage';
 import AsyncImageView from './AsyncImageView';
 
 describe('<AsyncImage />', () => {
@@ -161,23 +161,23 @@ describe('<AsyncImage />', () => {
     wrapper.update();
 
     // Test render, should have 1 TempImages
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage')).to.have.length(1);
+    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(1);
 
     // Update image with a new fullUrl
     wrapper.setProps({ fullUrl: 'https://images.unsplash.com/photo-1584500167088-53ef0470677e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' });
     wrapper.update();
 
     // Test render, should have 2 TempImages
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage')).to.have.length(2);
+    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(2);
 
     // Simulate onLoaded on latest TempImage - TempImage should be reduced at 1
-    wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage').at(1).props().onLoaded();
+    wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage').at(1).props().onLoaded();
     wrapper.update();
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage')).to.have.length(1);
+    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(1);
 
     // Simulate onLoaded on latest TempImage - TempImage should remain at 1
-    wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage').at(0).props().onLoaded();
+    wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage').at(0).props().onLoaded();
     wrapper.update();
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImage' && n.props().testID === 'TempImage')).to.have.length(1);
+    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(1);
   });
 });
