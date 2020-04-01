@@ -53,6 +53,8 @@ module.exports = {
     react: 'react',
     reactDOM: 'react-dom',
     'react-native': 'react-native',
+    'mbp-components-rn-assetpicker': 'mbp-components-rn-assetpicker',
+    '@react-native-community/cameraroll': '@react-native-community/cameraroll',
   },
 
   plugins: [

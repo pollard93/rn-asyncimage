@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react-native';
-import AsyncImage from 'mbp-components-rn-asyncimage';
+import { AsyncImage, AsyncImageProps } from 'mbp-components-rn-asyncimage';
 import CenterView from '../components/CenterView/CenterView';
 import { Button, View } from 'react-native';
 

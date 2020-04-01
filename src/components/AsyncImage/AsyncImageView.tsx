@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Animated, View } from 'react-native';
-import AsyncImage, { AsyncImageProps } from './AsyncImage';
+import { AsyncImage, AsyncImageProps } from './AsyncImage';
 import styles from './AsyncImage.styles';
 
 
