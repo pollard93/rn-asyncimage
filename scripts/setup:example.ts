@@ -21,7 +21,12 @@ void (async function () {
 
   try {
     // Necessary to remove all packages except react and react-native to handle name change scenarios
-    const packages = Object.keys(dependencies).filter((k) => !['react', 'react-native'].includes(k)).join(' ');
+    const packages = Object.keys(dependencies).filter((k) => ![
+      'react',
+      'react-native',
+      'mbp-components-rn-assetpicker',
+      '@react-native-community/cameraroll',
+    ].includes(k)).join(' ');
     console.log(`removing previous packages: ${packages}`);
     await exec(`cd example && yarn remove ${packages}`);
   } catch (e) {}

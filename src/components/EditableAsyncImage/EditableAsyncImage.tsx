@@ -4,9 +4,8 @@ import { PhotoIdentifier } from '@react-native-community/cameraroll';
 import { AsyncImage, AsyncImageProps } from '../AsyncImage/AsyncImage';
 
 export interface EditableAsyncImageProps {
-  setRef: any;
   asyncImageProps: AsyncImageProps;
-  onChange: (asset: PhotoIdentifier['node']) => Promise<any>;
+  onChange: (asset: PhotoIdentifier['node']) => void;
   children?: (args: {
     selectedAsset: PhotoIdentifier['node'];
     openPicker: () => void;
