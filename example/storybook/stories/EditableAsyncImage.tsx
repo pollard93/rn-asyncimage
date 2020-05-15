@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { useForm } from 'react-hook-form';
 import { View, Button } from 'react-native';
@@ -49,15 +49,20 @@ storiesOf('EditableAsyncImage', module)
       };
 
 
+      /**
+       * Register form
+       */
+      useEffect(() => {
+        register(
+          { name: 'profilePicture' },
+          { required: false, validate: (v) => !!v },
+        )
+      }, [register]);
+
+
       return (
         <View>
           <EditableAsyncImage
-            setRef={
-              register(
-                { name: 'profilePicture' },
-                { required: false, validate: (v) => !!v },
-              )
-            }
             asyncImageProps={{
               /**
                * Always populate urls for editable, because if the user cancels their selection it needs to revert the image
@@ -72,7 +77,7 @@ storiesOf('EditableAsyncImage', module)
                 },
               },
             }}
-            onChange={async (file) => setValue('profilePicture', file, true)}
+            onChange={(file) => setValue('profilePicture', file, true)}
           >
             {({selectedAsset, openPicker, onCancel}) => {
               console.log("selectedAsset", selectedAsset)
