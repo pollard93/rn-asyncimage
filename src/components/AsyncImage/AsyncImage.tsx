@@ -8,8 +8,8 @@ export interface AsyncImageProps {
   splashUrl?: string;
   containerProps: ViewProps;
   placeholderImageSource?: ImageSourcePropType;
-  splashImageProps?: ImageProps;
-  imageProps?: ImageProps;
+  splashImageProps?: Partial<ImageProps>;
+  imageProps?: Partial<ImageProps>;
   blockUpdate?: true; // Image does not accept updates to the fullUrl
   onLoaded?: () => void;
   transitionTime?: number; // Default 300ms
