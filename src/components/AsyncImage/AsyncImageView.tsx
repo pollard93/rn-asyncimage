@@ -21,7 +21,7 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
     onLoad,
     splashUrl,
     containerProps,
-    placeholderImageSource,
+    placeholderImageProps,
     splashImageProps = {},
     imageProps = {},
   } = props;
@@ -32,13 +32,12 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
    * Useful if the urls fail
    */
   const PlaceholderImage = () => {
-    if (loaded || !placeholderImageSource) return null;
+    if (loaded || !placeholderImageProps) return null;
 
     return (
       <View style={styles.placeholderView}>
         <Image
-          style={styles.placeholderImage}
-          source={placeholderImageSource}
+          {...placeholderImageProps}
           testID='AIPLACEHOLDER'
         />
       </View>
