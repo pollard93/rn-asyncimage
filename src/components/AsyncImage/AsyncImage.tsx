@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import { ImageProps, Animated, ViewProps, ImageSourcePropType } from 'react-native';
+import { ImageProps, Animated, ViewProps } from 'react-native';
 import AsyncImageView from './AsyncImageView';
 
 
@@ -7,7 +7,7 @@ export interface AsyncImageProps {
   fullUrl?: string;
   splashUrl?: string;
   containerProps: ViewProps;
-  placeholderImageSource?: ImageSourcePropType;
+  placeholderImageProps?: ImageProps;
   splashImageProps?: Partial<ImageProps>;
   imageProps?: Partial<ImageProps>;
   blockUpdate?: true; // Image does not accept updates to the fullUrl

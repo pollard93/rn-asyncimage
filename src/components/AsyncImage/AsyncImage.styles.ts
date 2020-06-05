@@ -2,15 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   placeholderView: {
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: '100%',
-  },
-  placeholderImage: {
-    aspectRatio: 1,
-    height: '40%',
+    ...StyleSheet.absoluteFillObject,
   },
   splashImage: {
     height: '100%',
