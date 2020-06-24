@@ -1,6 +1,6 @@
 {
   "name": "mbp-components-rn-asyncimage",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Boilerplate to quickstart React Native component development",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -44,7 +44,6 @@
     "eslint-plugin-react-native": "^3.8.1",
     "jest": "^25.1.0",
     "jest-enzyme": "^7.1.2",
-    "mbp-components-rn-assetpicker": "ssh://git@bitbucket.org:madebyprism/mbp-components-rn-assetpicker.git#0.1.0",
     "mock-async-storage": "^2.2.0",
     "npm-run-all": "^4.1.5",
     "react": "^16.13.0",
@@ -63,7 +62,6 @@
   },
   "peerDependencies": {
     "@react-native-community/cameraroll": "^1.5.2",
-    "mbp-components-rn-assetpicker": "ssh://git@bitbucket.org:madebyprism/mbp-components-rn-assetpicker.git#0.1.0",
     "react": ">= 16.8.6",
     "react-native": ">= 0.60.5"
   },
