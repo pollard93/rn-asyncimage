@@ -99,9 +99,14 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
             styles.fullImage,
           ]}
           onLoad={onLoad}
-          source={{
-            uri: fullUrl,
-          }}
+          source={
+            typeof imageProps.source === "object" ? {
+              ...imageProps.source,
+              uri: fullUrl,
+            } : {
+              uri: fullUrl,
+            }
+          }
           testID='AIFULL'
         />
       )}
