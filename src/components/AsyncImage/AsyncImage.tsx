@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, FC } from 'react';
 import { ImageProps, Animated, ViewProps } from 'react-native';
 import AsyncImageView from './AsyncImageView';
 
@@ -10,7 +10,7 @@ export interface AsyncImageProps {
   placeholderImageProps?: ImageProps;
   splashImageProps?: Partial<ImageProps>;
   imageProps?: Partial<ImageProps>;
-  blockUpdate?: true; // Image does not accept updates to the fullUrl
+  editable?: boolean; // Should accept render updates
   onLoaded?: () => void;
   transitionTime?: number; // Default 300ms
   key?: number | string; // For iteration
@@ -18,7 +18,7 @@ export interface AsyncImageProps {
 }
 
 
-const AsyncImageComp = (props: AsyncImageProps) => {
+const AsyncImageComp: FC<AsyncImageProps> = (props) => {
   const [opacity] = useState(new Animated.Value(0));
   const [loaded, setLoaded] = useState(false);
 
@@ -53,4 +53,4 @@ const AsyncImageComp = (props: AsyncImageProps) => {
   );
 };
 
-export const AsyncImage = memo(AsyncImageComp, (props) => props.blockUpdate);
+export const AsyncImage = memo(AsyncImageComp, (props) => !props.editable);
