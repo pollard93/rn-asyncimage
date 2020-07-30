@@ -158,6 +158,7 @@ describe('<AsyncImage />', () => {
             height: 250,
           },
         }}
+        editable
       />,
     );
 
@@ -178,14 +179,11 @@ describe('<AsyncImage />', () => {
     // Test render, should have 2 TempImages
     expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(2);
 
-    // Simulate onLoaded on latest TempImage - TempImage should be reduced at 1
-    wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage').at(1).props().onLoaded();
+    // Update image with a new fullUrl with matches the initial url
+    wrapper.setProps({ fullUrl: 'https://images.unsplash.com/photo-1563342295-428fe4b7932e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop' });
     wrapper.update();
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(1);
 
-    // Simulate onLoaded on latest TempImage - TempImage should remain at 1
-    wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage').at(0).props().onLoaded();
-    wrapper.update();
-    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(1);
+    // Test render, should have cleared tempUrls
+    expect(wrapper.findWhere((n) => n.name() === 'AsyncImageComp' && n.props().testID === 'TempImage')).to.have.length(0);
   });
 });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Image, Animated, View } from 'react-native';
 import { AsyncImage, AsyncImageProps } from './AsyncImage';
 import styles from './AsyncImage.styles';
@@ -11,8 +11,8 @@ export interface AsyncImageViewProps extends AsyncImageProps {
 }
 
 
-const AsyncImageView = (props: AsyncImageViewProps) => {
-  const [fullUrl] = useState(props.fullUrl);
+const AsyncImageView: FC<AsyncImageViewProps> = (props) => {
+  const [initialUrl] = useState(props.fullUrl);
   const [tempUrls, setTempUrls] = useState<string[]>([]);
   const [initialised, setInitialised] = useState(false);
   const {
@@ -66,19 +66,34 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
 
   /**
    * Listen for changes on props.fullUrl
-   * If props.blockUpdate is false then accept updates
+   * Append new urls in tempUrls to be rendered on top of original image
+   * If props.editable is true then accept updates
    */
   useEffect(() => {
+    if (!props.editable || !initialised) return;
+
     /**
-     * If initialised and the fullUrl is not in tempUrls then concat into tempUrls
-     * Must wait until initialised, otherwise the first fullUrl will be pushed into tempUrls
+     * If full url has changed to null
+     * Or changes back to the initial url
+     * Then clear tempUrls
      */
-    if (initialised && !tempUrls.includes(props.fullUrl)) {
+    if (!props.fullUrl || props.fullUrl === initialUrl) {
+      setTempUrls([]);
+      return;
+    }
+
+    /**
+     * If the new fullUrl is not the initial url then push into temps
+     */
+    if (props.fullUrl !== initialUrl) {
       setTempUrls(tempUrls.concat(props.fullUrl));
     }
   }, [props.fullUrl]);
 
 
+  /**
+   * On mount set initialised
+   */
   useEffect(() => {
     setInitialised(true);
   }, []);
@@ -89,8 +104,8 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
       <PlaceholderImage />
       <SplashImage />
 
-      {/* Main image */}
-      {fullUrl && (
+      {/* Main image, can remove safely if there's 2 tempUrls displaying below */}
+      {initialUrl && tempUrls.length < 2 && (
         <Animated.Image
           {...imageProps}
           style={[
@@ -99,38 +114,22 @@ const AsyncImageView = (props: AsyncImageViewProps) => {
             styles.fullImage,
           ]}
           onLoad={onLoad}
-          source={
-            typeof imageProps.source === 'object' ? {
-              ...imageProps.source,
-              uri: fullUrl,
-            } : {
-              uri: fullUrl,
-            }
-          }
+          source={{
+            uri: initialUrl,
+          }}
           testID='AIFULL'
         />
       )}
 
       {/* Iterate over tempUrls and display them, set blockUpdate so AsyncImage does not accept updates */}
-      {tempUrls.map((t) => (
+      {tempUrls.map((t, i) => (
         <AsyncImage
-          key={t}
+          key={`${t}-${i}`}
           testID='TempImage'
           splashUrl={null}
           fullUrl={t}
           containerProps={{
             style: styles.tempImage,
-          }}
-          blockUpdate
-          onLoaded={() => {
-            /**
-             * On loaded remove the first item in the array, removing unecessary views
-             */
-            if (tempUrls.length > 1) {
-              const newTempUrls = [...tempUrls];
-              newTempUrls.shift();
-              setTempUrls(newTempUrls);
-            }
           }}
         />
       ))}
