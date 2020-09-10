@@ -1,6 +1,6 @@
 {
   "name": "mbp-components-rn-asyncimage",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "React Native Async Image Component",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
