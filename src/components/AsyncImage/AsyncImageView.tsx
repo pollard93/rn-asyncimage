@@ -132,7 +132,7 @@ const AsyncImageView: FC<AsyncImageViewProps> = (props) => {
             resizeMode: props.imageProps ? props.imageProps.resizeMode : undefined,
           }}
           containerProps={{
-            style: styles.tempImage,
+            style: [styles.tempImage, props.editableBackgroundColor && { backgroundColor: props.editableBackgroundColor }],
           }}
         />
       ))}

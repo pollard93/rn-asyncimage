@@ -11,6 +11,7 @@ export interface AsyncImageProps {
   splashImageProps?: Partial<ImageProps>;
   imageProps?: Partial<ImageProps>;
   editable?: boolean; // Should accept render updates
+  editableBackgroundColor?: string; // Background color to be applied to tempUrl images when the image has changed
   onLoaded?: () => void;
   transitionTime?: number; // Default 300ms
   key?: number | string; // For iteration
