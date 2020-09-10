@@ -129,7 +129,7 @@ const AsyncImageView: FC<AsyncImageViewProps> = (props) => {
           splashUrl={null}
           fullUrl={t}
           imageProps={{
-            resizeMode: props.imageProps?.resizeMode,
+            resizeMode: props.imageProps ? props.imageProps.resizeMode : undefined,
           }}
           containerProps={{
             style: styles.tempImage,
